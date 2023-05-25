@@ -4,15 +4,15 @@ import { useSearchParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { getMoviesByKeyword } from '../../Api/fetchApi';
 import { SearchForm, SearchFild, SearchButton } from './Movies.styled';
 import MoviesList from '../../components/MovieList/MovieList';
+import { Loader } from '../../components/Loader/Loader';
 
-import { fetchMoveis } from '../../Api/fetchMovies';
-
-const getMovieByIdUrl = `https://api.themoviedb.org/3/search/movie`;
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -26,7 +26,9 @@ const Movies = () => {
     if (!query) return;
     const getMovies = async () => {
       try {
-        const respons = await fetchMoveis(getMovieByIdUrl, query);
+        setIsLoading(true);
+        setMoviesList([]);
+        const respons = await getMoviesByKeyword(query);
         const movies = respons.data.results;
         if (movies.length === 0) {
           toast.error(
@@ -37,12 +39,14 @@ const Movies = () => {
         setMoviesList(movies);
       } catch (error) {
         toast.error(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     getMovies();
   }, [query, setSearchParams]);
   return (
-    <div>
+    <>
       <Formik initialValues={{ query: '' }} onSubmit={onFormSubmit}>
         <SearchForm>
           <SearchFild
@@ -55,9 +59,10 @@ const Movies = () => {
           <SearchButton type="submit">Search</SearchButton>
         </SearchForm>
       </Formik>
+      {isLoading && <Loader />}
       {moviesList && <MoviesList movies={moviesList} />}
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

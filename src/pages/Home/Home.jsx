@@ -1,32 +1,38 @@
 import { useState, useEffect } from 'react';
-// import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { fetchMoveis } from '../../Api/fetchMovies';
+import { getTrendingMovies } from '../../Api/fetchApi';
 import MoviesList from '../../components/MovieList/MovieList';
-
-const getTrendesUrl = `https://api.themoviedb.org/3/trending/movie/day?`;
+import { Loader } from '../../components/Loader/Loader';
+import { Title } from './Home.styled';
 
 const Home = () => {
   const [moviesList, setMoviesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const respons = await fetchMoveis(getTrendesUrl);
+        setIsLoading(true);
+        const respons = await getTrendingMovies();
         const movies = respons.data.results;
         setMoviesList(movies);
       } catch (error) {
         toast.error(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     getMovies();
   }, []);
   return (
     <>
-      <h1>Trending today</h1>
-      <MoviesList movies={moviesList} />
+      <Title>Trending today</Title>
+      {isLoading && <Loader />}
+      <MoviesList movies={moviesList} state={{ from: location }} />
       <ToastContainer />
     </>
   );
