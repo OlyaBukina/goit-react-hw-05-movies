@@ -2,6 +2,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from '../../Api/fetchApi';
 
+import {
+  ReviewsWrapper,
+  ReviewsList,
+  ReviewsItem,
+  ReviewAuthor,
+  ReviewContent,
+  DefaultReview,
+} from './Reviews.styled';
+
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
@@ -20,19 +29,21 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <>
-      {reviews.length === 0 && `We don't have any reviews for this film`}
-      {reviews.length > 0 && (
-        <ul>
-          {reviews.map(review => (
-            <li key={review.id}>
-              <p>Author: {review.author}</p>
-              <p>{review.content}</p>
-            </li>
-          ))}
-        </ul>
+    <ReviewsWrapper>
+      {reviews.length === 0 && (
+        <DefaultReview>We don't have any reviews for this film</DefaultReview>
       )}
-    </>
+      {reviews.length > 0 && (
+        <ReviewsList>
+          {reviews.map(({ id, author, content }) => (
+            <ReviewsItem key={id}>
+              <ReviewAuthor>Author: {author}</ReviewAuthor>
+              <ReviewContent>{content}</ReviewContent>
+            </ReviewsItem>
+          ))}
+        </ReviewsList>
+      )}
+    </ReviewsWrapper>
   );
 };
 export default Reviews;

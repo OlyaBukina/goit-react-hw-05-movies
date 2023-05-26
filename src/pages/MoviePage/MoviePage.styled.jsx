@@ -1,23 +1,6 @@
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 
-export const MovieWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
-`;
-
-export const MovieInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-`;
-
-export const MoviePoster = styled.img`
-  border-radius: 10px;
-  height: 70vh;
-`;
-
 export const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
@@ -38,34 +21,20 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const MovieMainTitle = styled.h2`
-  font-size: 32px;
-`;
-
-export const MovieScore = styled.p`
-  font-size: 18px;
-  color: #00467f;
-`;
-
-export const MovieInfoTitle = styled.h3`
-  font-size: 22px;
-`;
-
-export const MovieInfoDesc = styled.p`
-  font-size: 16px;
-`;
-
 export const MovieExtraInfo = styled.div`
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
+  /* padding-top: 15px;
+  padding-bottom: 15px; */
 `;
 
 export const ExtraInfoTitle = styled.h4`
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 7px;
 `;
 export const ExtraInfoList = styled.div`
   display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
   gap: 7px;
 `;
 export const ExtraInfoLink = styled(NavLink)`
@@ -78,7 +47,6 @@ export const ExtraInfoLink = styled(NavLink)`
   color: #fff;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
   width: 110px;
   &.active {
     border: 1.5px solid #01b4e4;
