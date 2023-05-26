@@ -6,9 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { getMoviesByKeyword } from '../../Api/fetchApi';
 import { SearchForm, SearchFild, SearchButton } from './Movies.styled';
-import MoviesList from '../../components/MovieList/MovieList';
+import MoviesList from '../../components/MoviesList/MoviesList';
 import { Loader } from '../../components/Loader/Loader';
-
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);

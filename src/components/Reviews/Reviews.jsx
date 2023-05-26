@@ -8,6 +8,7 @@ const Reviews = () => {
 
   useEffect(() => {
     const getMovieReviews = async () => {
+      if (!movieId) return;
       try {
         const reviews = await getReviews(movieId);
         setReviews(reviews);
@@ -17,16 +18,21 @@ const Reviews = () => {
     };
     getMovieReviews();
   }, [movieId]);
-    
+
   return (
-    <ul>
-      {reviews.map(review => (
-        <li key={review.id}>
-          <p>Author: {review.author}</p>
-          <p>{review.content}</p>
-        </li>
-      ))}
-    </ul>
+    <>
+      {reviews.length === 0 && `We don't have any reviews for this film`}
+      {reviews.length > 0 && (
+        <ul>
+          {reviews.map(review => (
+            <li key={review.id}>
+              <p>Author: {review.author}</p>
+              <p>{review.content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 export default Reviews;

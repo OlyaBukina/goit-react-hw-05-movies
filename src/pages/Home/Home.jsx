@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { getTrendingMovies } from '../../Api/fetchApi';
-import MoviesList from '../../components/MovieList/MovieList';
+import MoviesList from '../../components/MoviesList/MoviesList';
 import { Loader } from '../../components/Loader/Loader';
 import { Title } from './Home.styled';
 

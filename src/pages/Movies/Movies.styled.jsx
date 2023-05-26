@@ -13,7 +13,7 @@ export const SearchFild = styled(Field)`
   font-weight: 400;
   line-height: 1.16;
   background: #ffffff;
-  /* border: none; */
+  border: 1.5px solid #032541;
   border-radius: 15px;
   cursor: pointer;
 
@@ -33,10 +33,12 @@ export const SearchButton = styled.button`
   width: 135px;
   height: 34px;
   padding: 10px 14px;
-  font-weight: 400;
+  font-weight: 700;
+  text-transform: uppercase;
   line-height: 1.16;
-  background: #ffffff;
-  /* border: none; */
+  color: #fff;
+  background: #00467f;
+  border: 1.5px solid #00467f;
   border-radius: 15px;
   cursor: pointer;
 

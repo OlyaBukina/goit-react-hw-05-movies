@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'd66303a9f2f21ddca222463dbeed564f';
+const API_KEY = 'c5a1db41bd5eb56af64be0ab647b8aee';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 export const getTrendingMovies = async () => {
@@ -11,8 +11,7 @@ export const getTrendingMovies = async () => {
   }
 };
 
-
-export const getMoviesByKeyword = async (query) => {
+export const getMoviesByKeyword = async query => {
   try {
     return await axios.get(`search/movie?api_key=${API_KEY}&query=${query}`);
   } catch (error) {
@@ -33,9 +32,7 @@ export async function getMovieById(movieId) {
 
 export async function getCast(movieId) {
   try {
-    const cast = await axios.get(
-      `movie/${movieId}/credits?api_key=${API_KEY}`
-    );
+    const cast = await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}`);
     return cast.data.cast;
   } catch (error) {
     throw new Error('Oops, something goes wrong!');
@@ -47,7 +44,7 @@ export async function getReviews(movieId) {
     const reviews = await axios.get(
       `movie/${movieId}/reviews?api_key=${API_KEY}`
     );
-    return reviews.data.results ;
+    return reviews.data.results;
   } catch (error) {
     throw new Error('Oops, something goes wrong!');
   }

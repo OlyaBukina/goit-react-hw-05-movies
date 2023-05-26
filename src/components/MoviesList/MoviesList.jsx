@@ -4,7 +4,8 @@ import {
   StyledItem,
   StyledPoster,
   StyledTitle,
-} from './MovieList.styled';
+  StyledDate,
+} from './MoviesList.styled';
 
 const posterUrl = 'https://image.tmdb.org/t/p/w500';
 const noPosterUrl = 'https://sd.keepcalms.com/i/keep-calm-poster-not-found.png';
@@ -21,8 +22,11 @@ const MovieList = ({ movies }) => {
               alt="Movie poster"
             />
             <StyledTitle>
-              {title} | {release_date ? release_date.slice(0, 4) : `Unknown`}
+              {title.length > 26 ? `${title.slice(0, 26)}${' ...'}` : title}
             </StyledTitle>
+            <StyledDate>
+              {release_date ? release_date.slice(0, 4) : `Unknown`}
+            </StyledDate>
           </Link>
         </StyledItem>
       ))}

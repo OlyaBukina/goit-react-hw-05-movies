@@ -7,13 +7,13 @@ export const StyledList = styled.ul`
   margin-bottom: 60px;
 
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 32px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
   }
 
   @media screen and (min-width: 1280px) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
   }
 `;
 
@@ -24,18 +24,15 @@ export const StyledItem = styled.li`
 export const StyledPoster = styled.img`
   min-height: 402px;
   object-fit: cover;
-  max-width: 280px;
   margin-bottom: 10px;
   border-radius: 5px;
 
   @media screen and (min-width: 768px) {
-    height: 455px;
-    min-width: 336px;
+    min-width: 180px;
   }
 
   @media screen and (min-width: 1280px) {
-    min-height: 574px;
-    min-width: 394px;
+    /* min-width: 292px; */
   }
 
   &:hover {
@@ -48,14 +45,20 @@ export const StyledTitle = styled.p`
   display: block;
   font-weight: 600;
   line-height: 1.33;
-  height: 16px;
-  overflow: hidden;
+  /* height: 16px; */
+  /* overflow: hidden; */
   color: #000;
 
   @media screen and (min-width: 1280px) {
     height: 24px;
     font-style: normal;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.2;
   }
+`;
+
+export const StyledDate = styled.p`
+  color: #00457d;
+  font-weight: 700;
+  font-size: 16px;
 `;
