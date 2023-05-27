@@ -12,36 +12,39 @@ import { Loader } from '../../components/Loader/Loader';
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
-  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const query = searchParams.get('query') ?? '';
+  const [params, setParams] = useState({
+    query: searchParams.get('query') ?? '',
+    page: 1,
+  });
+  const location = useLocation();
 
   const onFormSubmit = (values, { resetForm }) => {
     const nextParams = values.query !== '' ? { query: values.query } : {};
     setSearchParams(nextParams);
+
+    setParams({ query: values.query, page: 1 });
     resetForm();
   };
 
   useEffect(() => {
+    const { query, page } = params;
     if (!query) return;
     const getMovies = async () => {
       try {
         setIsLoading(true);
         setMoviesList([]);
-        const respons = await getMoviesByKeyword(query, page);
-        const movies = respons.data.results;
-        const totalPages = respons.data.total_pages;
-        setTotalPages(totalPages);
+        const response = await getMoviesByKeyword(query, page);
+        const movies = response.data.results;
+        const totalPages = response.data.total_pages;
         if (movies.length === 0) {
           toast.error(
             'Search result not successful. Enter the correct movie name.'
           );
-          setSearchParams({});
+          setParams({ ...params, query: '', page: 1 });
         }
+        setTotalPages(totalPages);
         setMoviesList(movies);
       } catch (error) {
         toast.error(error.message);
@@ -50,10 +53,10 @@ const Movies = () => {
       }
     };
     getMovies();
-  }, [query, setSearchParams, page]);
+  }, [params]);
 
   const handlePageChange = event => {
-    setPage(event.selected + 1);
+    setParams({ ...params, page: event.selected + 1 });
   };
   return (
     <>

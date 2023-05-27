@@ -40,7 +40,7 @@ const MovieList = ({ movies, onClick, totalPages }) => {
           </StyledItem>
         ))}
       </StyledList>
-      
+
       {totalPages > 1 && (
         <ReactPaginate
           previousLabel={<AiOutlineArrowLeft />}
