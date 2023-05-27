@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   MovieWrapper,
   MovieInfoWrapper,
@@ -46,6 +48,17 @@ const MovieDescription = ({
       </MovieInfoWrapper>
     </MovieWrapper>
   );
+};
+
+MovieDescription.propTypes = {
+  movieInfo: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.object),
+    overview: PropTypes.string,
+    release_date: PropTypes.string,
+  }).isRequired,
 };
 
 export default MovieDescription;

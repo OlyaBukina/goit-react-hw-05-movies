@@ -1,0 +1,33 @@
+.pagContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.pagButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.33;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagButton:hover {
+  color: #ffffff;
+  background-color: #00457d;
+  width: 40px;
+  height: 40px;
+}
+
+.activeBtn {
+  background-color: #0d61a5;
+  color: #ffffff;
+}
