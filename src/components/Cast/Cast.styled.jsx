@@ -13,7 +13,7 @@ export const CastItem = styled.li`
 `;
 
 export const ActorPoster = styled.img`
-  min-height: 250px;
+  min-height: 280px;
   background-color: #dbdbdb;
   border-radius: 10px;
 `;
