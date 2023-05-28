@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
@@ -18,6 +18,8 @@ const noPosterUrl = 'https://sd.keepcalms.com/i/keep-calm-poster-not-found.png';
 
 const MovieList = ({ movies, onClick, totalPages }) => {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
 
   const { pagContainer, pagButton, activeBtn } = css;
   return (
@@ -43,6 +45,7 @@ const MovieList = ({ movies, onClick, totalPages }) => {
 
       {totalPages > 1 && (
         <ReactPaginate
+          key={query}
           previousLabel={<AiOutlineArrowLeft />}
           nextLabel={<AiOutlineArrowRight />}
           pageClassName={pagButton}
